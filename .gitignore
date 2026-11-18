@@ -1,0 +1,28 @@
+
+# Configuración local y credenciales
+/config/conexion.php
+.env
+.env.*
+
+# Archivos temporales
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Archivos de respaldo de bases de datos
+*.sql
+*.sql.gz
+*.zip
+
+# Archivos cargados por usuarios
+/uploads/*
+!/uploads/.gitkeep
+
+# Archivos del editor
+.vscode/
+.idea/
+
+# Dependencias que no necesitamos subir
+/vendor/
