@@ -5,5 +5,7 @@
 
     <script src="/BibliotecaTecno/assets/js/principal.js"></script>
 
+    <script src="/BibliotecaTecno/assets/js/validaciones.js"></script>
+
 </body>
 </html>

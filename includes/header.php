@@ -12,7 +12,7 @@ $nombreUsuario = obtener_usuario();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>BibliotecaTecno | Panel principal</title>
+    <title>BibliotecaTecno | <?= limpiar($tituloPagina ?? 'Panel principal') ?></title>
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -30,11 +30,14 @@ $nombreUsuario = obtener_usuario();
 
     <header class="topbar">
 
-        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-            <i class="bi bi-list"></i>
-        </button>
-
-        <a href="/BibliotecaTecno/principal.php" class="brand">
+        <a
+            href="#"
+            class="brand"
+            id="brandToggle"
+            role="button"
+            aria-label="Mostrar u ocultar menú"
+            aria-controls="sidebar"
+            aria-expanded="true">
             <i class="bi bi-book-half"></i>
             <span>BibliotecaTecno</span>
         </a>

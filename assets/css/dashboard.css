@@ -306,6 +306,14 @@ body {
 }
 
 /* PANELES Y TABLAS */
+.brand {
+    cursor: pointer;
+    user-select: none;
+}
+
+.brand:hover {
+    color: #e0efff;
+}
 
 .dashboard-panel {
     background: white;
@@ -429,6 +437,53 @@ body {
 
     .dashboard-panel {
         padding: 14px;
+    }
+
+}
+
+
+/* ==========================================
+   BIBLIOTECATECNO - AJUSTES DEL MENU
+========================================== */
+
+/* Transición del menú */
+.sidebar {
+    transition:
+        transform 0.3s ease,
+        visibility 0.3s ease;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* Ocultar barra en Chrome, Edge y Safari */
+.sidebar::-webkit-scrollbar,
+.sidebar-nav::-webkit-scrollbar,
+.sidebar *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Transición del contenido */
+.main-content,
+.dashboard-content {
+    transition:
+        margin-left 0.3s ease,
+        width 0.3s ease;
+    min-width: 0;
+}
+
+/* En móviles, el contenido ocupa todo el ancho */
+@media (max-width: 768px) {
+
+    .main-content,
+    .dashboard-content {
+        margin-left: 0;
+        width: 100%;
     }
 
 }

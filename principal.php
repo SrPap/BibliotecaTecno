@@ -24,7 +24,7 @@ try {
             'ejemplares' => "SELECT COUNT(*) FROM ejemplar",
             'estudiantes' => "SELECT COUNT(*) FROM estudiante WHERE activo = 1",
             'prestamos' => "SELECT COUNT(*) FROM prestamo WHERE estado = 'ACTIVO'",
-            'solicitudes' => "SELECT COUNT(*) FROM solicitud WHERE estado = 'PENDIENTE'"
+            'solicitudes' => "SELECT COUNT(*) FROM pedido WHERE estado = 'PENDIENTE'"
         ];
 
         foreach ($consultas as $clave => $sql) {
@@ -41,8 +41,8 @@ try {
                     p.fecha_vencimiento,
                     p.estado
                 FROM prestamo p
-                INNER JOIN solicitud s
-                    ON p.id_solicitud = s.id_solicitud
+                INNER JOIN pedido s
+                    ON p.id_pedido = s.id_pedido
                 INNER JOIN libro l
                     ON s.id_libro = l.id_libro
                 INNER JOIN estudiante e
@@ -54,12 +54,12 @@ try {
 
         // Solicitudes pendientes
         $sql = "SELECT
-                    s.id_solicitud,
+                    s.id_pedido,
                     l.titulo,
                     e.nombres,
                     e.apellidos,
                     s.fecha_solicitud
-                FROM solicitud s
+                FROM pedido s
                 INNER JOIN libro l
                     ON s.id_libro = l.id_libro
                 INNER JOIN estudiante e
@@ -88,7 +88,7 @@ try {
 
             // Estadísticas personales
             $sql = "SELECT COUNT(*)
-                    FROM solicitud
+                    FROM pedido
                     WHERE id_estudiante = :id";
 
             $consulta = $conexion->prepare($sql);
@@ -97,8 +97,8 @@ try {
 
             $sql = "SELECT COUNT(*)
                     FROM prestamo p
-                    INNER JOIN solicitud s
-                        ON p.id_solicitud = s.id_solicitud
+                    INNER JOIN pedido s
+                        ON p.id_pedido = s.id_pedido
                     WHERE s.id_estudiante = :id
                     AND p.estado = 'ACTIVO'";
 
@@ -107,7 +107,7 @@ try {
             $estadisticas['prestamos'] = (int) $consulta->fetchColumn();
 
             $sql = "SELECT COUNT(*)
-                    FROM solicitud
+                    FROM pedido
                     WHERE id_estudiante = :id
                     AND estado = 'PENDIENTE'";
 
@@ -117,11 +117,11 @@ try {
 
             // Últimas solicitudes del estudiante
             $sql = "SELECT
-                        s.id_solicitud,
+                        s.id_pedido,
                         l.titulo,
                         s.fecha_solicitud,
                         s.estado
-                    FROM solicitud s
+                    FROM pedido s
                     INNER JOIN libro l
                         ON s.id_libro = l.id_libro
                     WHERE s.id_estudiante = :id
